@@ -1,0 +1,52 @@
+/*
+
+ELEMENTO MULTIBODY trave dinamica
+
+Parametri:
+--> (int) elm_ASM_id=id assembly
+--> (int) elm_body1,2,3= id corpi
+--> (int) NODE_BODY_1,2,3= id nodi 1,2,3
+--> (int) RSYS_NODE_1,2,3= sistemi di riferimento locale (x è l'asse trave)
+--> (real) L_elem= lunghezza elemento trave
+--> (real) m_elem= massa lineare elemento
+--> (real) Ispec_elem= inerzia specifica elemento (per unità di lunghezza)
+--> (real) EA_elem= modulo di rigidezza assiale
+--> (real) GA_shear_x,y_elem= modulo di rigidezza a taglio
+--> (real) EJtors_elem=rigidezza torsionale
+--> (real) EJflex_elem=rigidezza flessionale
+
+*/
+
+#definiamo prima i parametri concentrati per il comportamento dinamico
+body: elm_body1, NODE_1,
+						(L_elem/4.)*m_elem,
+						reference, RSYS_NODE_1,
+								(L_elem/8.), 0., 0., #qua l'offset dovrebbe essere positivo per spostare la massa verso il centro trave
+						diag, (L_elem/4.)*Ispec_elem, 1./12.*(L_elem/4.)^3*m_elem, 1./12.*(L_elem/4.)^3*m_elem,
+						inertial, reference, RSYS_NODE_1, eye
+						;
+body: body2_beam1 ,NODE_2,
+						(L_elem/2.)*m_elem,
+						reference, RSYS_NODE_2,null, #qua niente offset perché siamo al centro trave
+						diag, (L_elem/2.)*Ispec_elem, 1./12.*(L_elem/2.)^3*m_elem, 1./12.*(L_elem/2.)^3*m_elem
+						inertial, reference, RSYS_NODE_2, eye
+						;
+body: body3_beam1, NODE_3,
+						(L_elem/4.)*m_elem,
+						reference, RSYS_NODE_2,
+								-(L_elem/8.), 0., 0., #qua negativo per spostare la massa verso il centro trave
+						diag, (L_elem/4.)*Ispec_elem, 1./12.*(L_elem/4.)^3*m_elem, 1./12.*(L_elem/4.)^3*m_elem
+						inertial, reference, RSYS_NODE_3, eye;
+#definizione trave
+beam: elm_ASM_id, #id assembly
+		NODE_1,
+			reference,RSYS_NODE_1,null, #link ai corpi + offset
+		NODE_2,
+			reference,RSYS_NODE_2,null, #link ai corpi + offset
+		NODE_3,
+			reference,RSYS_NODE_3,null,
+		reference,RSYS_NODE_2,eye, #orientazione assi materiale
+		linear elastic generic,
+				diag, EA_elem, GA_shear_y_elem, GA_shear_z_elem, EJtors_elem, EJflex_elem, EJflex_elem,
+		same,
+		same;

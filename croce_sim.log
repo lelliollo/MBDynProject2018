@@ -1,0 +1,47 @@
+output frequency: 1
+structural node: 1 0 0 0 euler123 -0 0 0
+structural node: 2 0.1 0 0 euler123 -0 0 0
+structural node: 3 0.2 0 0 euler123 -0 0 0
+structural node: 4 0.3 0 0 euler123 -0 0 0
+structural node: 5 0.3 0 0.1 euler123 -0 0 0
+structural node: 6 0.3 0 0.2 euler123 -0 0 0
+structural node: 7 0.3 0 0.3 euler123 -0 0 0
+structural node: 8 0.229289 -0.0707114 0.3 euler123 -0 0 0
+structural node: 9 0.370711 -0.0707114 0.3 euler123 -0 0 0
+structural node: 10 0.370711 0.0707114 0.3 euler123 -0 0 0
+structural node: 11 0.229289 0.0707114 0.3 euler123 -0 0 0
+structural node: 12 0.158577 -0.141423 0.3 euler123 -0 0 0
+structural node: 13 0.441423 -0.141423 0.3 euler123 -0 0 0
+structural node: 14 0.441423 0.141423 0.3 euler123 -0 0 0
+structural node: 15 0.158577 0.141423 0.3 euler123 -0 0 0
+structural node: 16 0.05 0 0 euler123 -0 0 0
+structural node: 17 0.15 0 0 euler123 -0 0 0
+structural node: 18 0.25 0 0 euler123 -0 0 0
+structural node: 19 0.3 0 0.05 euler123 -0 0 0
+structural node: 20 0.3 0 0.15 euler123 -0 0 0
+structural node: 21 0.3 0 0.25 euler123 -0 0 0
+structural node: 22 0.264644 -0.0353557 0.3 euler123 -0 0 0
+structural node: 23 0.193933 -0.106067 0.3 euler123 -0 0 0
+structural node: 24 0.335356 -0.0353557 0.3 euler123 -0 0 0
+structural node: 25 0.406067 -0.106067 0.3 euler123 -0 0 0
+structural node: 26 0.335356 0.0353557 0.3 euler123 -0 0 0
+structural node: 27 0.406067 0.106067 0.3 euler123 -0 0 0
+structural node: 28 -0.264644 0.0353557 0.3 euler123 -0 0 0
+structural node: 29 -0.193933 0.106067 0.3 euler123 -0 0 0
+clamp: 1 1 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 1
+body: 101 1 0.0119282 0.0125 0 0 3.35481e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+body: 102 16 0.0238564 0 0 0 6.70963e-07 0 0 0 4.97009e-06 0 0 0 4.97009e-06
+body: 103 2 0.0119282 -0.0125 0 0 3.35481e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+beam3: 1001 1 0 0 0 16 0 0 0 2 0 0 0
+body: 201 2 0.0119282 0.0125 0 0 3.35481e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+body: 202 17 0.0238564 0 0 0 6.70963e-07 0 0 0 4.97009e-06 0 0 0 4.97009e-06
+body: 203 3 0.0119282 -0.0125 0 0 3.35481e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+beam3: 1002 2 0 0 0 17 0 0 0 3 0 0 0
+body: 301 3 0.0119282 0.0125 0 0 3.35481e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+body: 302 18 0.0238564 0 0 0 6.70963e-07 0 0 0 4.97009e-06 0 0 0 4.97009e-06
+body: 303 4 0.0119282 -0.0125 0 0 3.35481e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+beam3: 1003 3 0 0 0 18 0 0 0 4 0 0 0
+body: 401 4 0.0119282 0 0 0.0375 1.73953e-05 0 0 0 1.73953e-05 0 0 0 3.35481e-07
+body: 402 19 0.0238564 0 0 0 4.97009e-06 0 0 0 4.97009e-06 0 0 0 6.70963e-07
+body: 403 5 0.0119282 0 0 -0.0375 1.73953e-05 0 0 0 1.73953e-05 0 0 0 3.35481e-07
+beam3: 1004 4 0 0 0 19 0 0 0 5 0 0 0
