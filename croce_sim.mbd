@@ -20,10 +20,15 @@
 #                                  parameter of the holding frame
 # Alberto Lavatelli - 2018
 # alberto.lavatelli@polimi.it
-
+#==============================================================================
+#§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+#==============================================================================
+#DEFINISCO IL TIPO DI PROBLEMA DA ANALIZZARE
 begin: data;
 	problem: initial value;
 end: data;
+#==============================================================================
+#§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
 #==============================================================================
 #SETUP DEL SOLUTORE
 begin: initial value;
@@ -43,37 +48,45 @@ tolerance: 1e-6;
 end: initial value;
 
 #==============================================================================
+#§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+#==============================================================================
 #PARAMETRI FISICI DEL modello
-set: real pigreco=3.14159;
-set: real radice2=1.4142;
+set: const real pigreco=pi;
+set: const real radice2=2^0.5;
 
 set: real d = 8.e-3; #diametro trave croce [m]
 set: real E=72.e9; #modulo trave croce [Pa]
+set: real nu=0.33; #poisson trave croce
+set: real G=E/(2*(1+nu)); #modulo a taglio
 set: real rho=2.7e3; #densità trave croce [kg/m^3]
 set: real A=pigreco/4*d^2.; #area trave croce[m^2]
 set: real m=rho*A; #massa lineare trave croce [kg/m]
 set: real L = .2; #lunghezza trave croce [m]
 set: real EA= E*A; #rigidezza assiale trave croce
+set: real GA= G*A; #rigidezza a taglio trave telaio
 set: real Jflex=pigreco/64.*d^4.; #momento d'inzerzia flessionale
 set: real Jtors=pigreco/32.*d^4.; #momento torsionale
 set: real EJflex= E*Jflex; #rigidezza flessionale y trave croce
 set: real EJtors= E*Jtors; #rigidezza torsionale trave croce
 set: real Ispec=0.5*m*(0.5*d)^2; #momento d'inerzia per unità di lunghezza
-remark: "=======> Controllo parametri croce (A,m,EA,Jflex,Jtors,Ispec)", A, m,EA,Jflex,Jtors,Ispec;
+remark: "=======> Controllo parametri croce (A,m,EA,GA,Jflex,Jtors,Ispec)", A, m,EA,GA,Jflex,Jtors,Ispec;
 
 set: real d_0 = 15.e-3; #diametro trave telaio [m]
 set: real E_0=72.e9; #modulo trave telaio [Pa]
+set: real nu_0=0.33; #poisson trave telaio
+set: real G_0=E_0/(2*(1+nu_0)); #modulo a taglio
 set: real rho_0=2.7e3; #densità trave telaio [kg/m^3]
 set: real A_0=pigreco/4.*d_0^2.; #area trave telaio[m^2]
 set: real m_0=rho_0*A_0; #massa lineare trave telaio [kg/m]
 set: real L_0= .3; #lunghezza trave telaio [m]
 set: real EA_0= E_0*A_0; #rigidezza assiale trave telaio
+set: real GA_0= G_0*A_0; #rigidezza a taglio trave telaio
 set: real Jflex_0=pigreco/64.*d_0^4.; #momento d'inzerzia flessionale
 set: real Jtors_0=pigreco/32.*d_0^4.; #momento torsionale
 set: real EJflex_0= E_0*Jflex_0; #rigidezza flessionale y trave telaio
 set: real EJtors_0= E_0*Jtors_0; #rigidezza torsionale trave telaio
 set: real Ispec_0=0.5*m_0*(0.5*d_0)^2; #momento d'inerzia per unità di lunghezza
-remark: "=======> Controllo parametri telaio (A,m,EA,Jflex,Jtors,Ispec)", A_0, m_0,EA_0,Jflex_0,Jtors_0,Ispec_0;
+remark: "=======> Controllo parametri telaio (A,m,EA,GA,Jflex,Jtors,Ispec)", A_0, m_0,EA_0,GA_0,Jflex_0,Jtors_0,Ispec_0;
 
 set: real rho_peso=7.8e3; #densità massa concentrata [kg/m3]
 set: real L_peso=10.e-3; #lunghezza peso [m]
@@ -88,6 +101,32 @@ set: real v0_gomito=-0.8; #velocità iniziale gomito
 set: real L_elem_telaio=L_0/3.;
 set: real L_elem_croce=L/2.;
 
+#==============================================================================
+#§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+#==============================================================================
+#Inizializzo VARIABILI LOCALI elementi trave
+set: integer elm_ASM_id=0;
+set: integer elm_body1=0;
+set: integer elm_body2=0;
+set: integer elm_body3=0;
+set: integer NODE_1=0;
+set: integer NODE_2=0;
+set: integer NODE_3=0;
+set: integer RSYS_NODE_1=0;
+set: integer RSYS_NODE_2=0;
+set: integer RSYS_NODE_3=0;
+set: real L_elem=1.;
+set: real m_elem=1.;
+set: real Ispec_elem=1.;
+set: real EA_elem=1.;
+set: real GA_shear_z_elem=1.;
+set: real GA_shear_y_elem=1.;
+set: real EJ_tors_elem=1.;
+set: real EJ_flex_y_elem=1.;
+set: real EJ_flex_z_elem=1.;
+
+#==============================================================================
+#§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
 #==============================================================================
 #ELEMENTI DEL MODELLO e caratteristiche output
 begin: control data;
@@ -106,11 +145,11 @@ rigid bodies:
 
 joints:
 	+1 #connessione traverso - GROUND
-	+2 #connessioni interne traverso
-	+1 #connessione traverso - montante
-	+2 #connessioni interne montante
-	+4 #connessioni montante - croce
-	+4 #connessioni interne croce
+	#+2 #connessioni interne traverso
+	#+1 #connessione traverso - montante
+	#+2 #connessioni interne montante
+	#+4 #connessioni montante - croce
+	#+4 #connessioni interne croce
 	+4 #connessioni masse-croce
 	;
 
@@ -126,8 +165,10 @@ print: equation description;	#così abbiamo le equazioni
 output results: netcdf; #output in netcdf
 
 end:control data;
-
 #==============================================================================
+#§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
+#==============================================================================
+
 #POSIZIONAMENTO NODI NELLO SPAZIO FISICO E ASSEGNA CONDIZIONI INIZIALI
 begin: nodes;
 #STRUTTURA TELAIO PRINCIPALE
@@ -222,7 +263,7 @@ reference: RSYS_TRAV_DX,
   ;
 reference: RSYS_TRAV_DX_vert,
 reference, RSYS_TRAV_DX, null,
-reference, RSYS_TRAV_DX,
+reference, global,
 		1, 0.,0.,1.,
 		2, 0.,1.,0.,
 reference, RSYS_TRAV_DX, null,
@@ -673,7 +714,8 @@ reference, RSYS_cbeam_e_4, null
 ;
 
 end: nodes;
-
+#==============================================================================
+#§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
 #==============================================================================
 #ASSEMBLAGGIO DEL MODELLO
 begin: elements;
@@ -688,139 +730,139 @@ joint: TERRA_JOINT,
     TRAV_SX,
 			node,
 			node;
+#§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*
+#CARATTERISTICHE FISICHE TELAIO COMUNI A TUTTI GLI ELM
+set: L_elem=L_elem_telaio;
+set: m_elem=m_0;
+set: Ispec_elem=Ispec_0;
+set: EA_elem=EA_0;
+set: GA_shear_z_elem=GA_0;
+set: GA_shear_y_elem=GA_0;
+set: EJ_tors_elem=EJtors_0;
+set: EJ_flex_y_elem=EJflex_0;
+set: EJ_flex_z_elem=EJflex_0;
+
+#§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*
 #_______________________________________________________________________________
 #COSTRUZIONE TRAVE: beam1
 set: const integer ASM_beam1=1001; #id assembly
 set: const integer body1_beam1=101;
 set: const integer body2_beam1=102;
 set: const integer body3_beam1=103;
-#definiamo prima i parametri concentrati per il comportamento dinamico
-body: body1_beam1, TRAV_SX,
-						(L_elem_telaio/4.)*m_0,
-						(L_elem_telaio/8.), 0., 0., #qua l'offset dovrebbe essere positivo per spostare la massa verso il centro trave
-						diag, (L_elem_telaio/4.)*Ispec_0, 1./12.*(L_elem_telaio/4.)^3*m_0, 1./12.*(L_elem_telaio/4.)^3*m_0;
-body: body2_beam1 ,MPOINT_BEAM_1,
-						(L_elem_telaio/2.)*m_0,
-						null, #qua niente offset perché siamo al centro trave
-						diag, (L_elem_telaio/2.)*Ispec_0, 1./12.*(L_elem_telaio/2.)^3*m_0, 1./12.*(L_elem_telaio/2.)^3*m_0;
-body: body3_beam1, TRAV_CSX,
-						(L_elem_telaio/4.)*m_0,
-						-(L_elem_telaio/8.), 0., 0., #qua negativo per spostare la massa verso il centro trave
-						diag, (L_elem_telaio/4.)*Ispec_0, 1./12.*(L_elem_telaio/4.)^3*m_0, 1./12.*(L_elem_telaio/4.)^3*m_0;
-#definizione trave
-beam: ASM_beam1, #id assembly
-		TRAV_SX,null, #link ai corpi + orientazione
-		MPOINT_BEAM_1,null, #link ai corpi + orientazione
-		TRAV_CSX,null, #link ai corpi + orientazione
-		eye,
-		linear elastic generic,
-				diag, EA_0, EA_0, EA_0, EJflex_0, EJflex_0, EJtors_0,
-		same,
-		same;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam1;
+set:  elm_body1=body1_beam1;
+set:  elm_body2=body2_beam1;
+set:  elm_body3=body3_beam1;
+set:  NODE_1=TRAV_SX;
+set:  NODE_2=MPOINT_BEAM_1;
+set:  NODE_3=TRAV_CSX;
+set:  RSYS_NODE_1=RSYS_TRAV_SX;
+set:  RSYS_NODE_2=RSYS_cbeam_1;
+set:  RSYS_NODE_3=RSYS_TRAV_CSX;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
 #_______________________________________________________________________________
 #COSTRUZIONE TRAVE: beam2
 set: const integer ASM_beam2=1002; #id assembly
 set: const integer body1_beam2=201;
 set: const integer body2_beam2=202;
 set: const integer body3_beam2=203;
-#definiamo prima i parametri concentrati per il comportamento dinamico
-body: body1_beam2, TRAV_CSX,
-						(L_elem_telaio/4.)*m_0,
-						(L_elem_telaio/8.), 0., 0., #qua l'offset dovrebbe essere positivo per spostare la massa verso il centro trave
-						diag, (L_elem_telaio/4.)*Ispec_0, 1./12.*(L_elem_telaio/4.)^3*m_0, 1./12.*(L_elem_telaio/4.)^3*m_0;
-body: body2_beam2 ,MPOINT_BEAM_2,
-						(L_elem_telaio/2.)*m_0,
-						null, #qua niente offset perché siamo al centro trave
-						diag, (L_elem_telaio/2.)*Ispec_0, 1./12.*(L_elem_telaio/2.)^3*m_0, 1./12.*(L_elem_telaio/2.)^3*m_0;
-body: body3_beam2, TRAV_CDX,
-						(L_elem_telaio/4.)*m_0,
-						-(L_elem_telaio/8.), 0., 0., #qua negativo per spostare la massa verso il centro trave
-						diag, (L_elem_telaio/4.)*Ispec_0, 1./12.*(L_elem_telaio/4.)^3*m_0, 1./12.*(L_elem_telaio/4.)^3*m_0;
-#definizione trave
-beam: ASM_beam2, #id assembly
-		TRAV_CSX,null, #link ai corpi + orientazione
-		MPOINT_BEAM_2,null, #link ai corpi + orientazione
-		TRAV_CDX,null, #link ai corpi + orientazione
-		eye,
-		linear elastic generic,
-				diag, EA_0, EA_0, EA_0, EJflex_0, EJflex_0, EJtors_0,
-		same,
-		same;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam2;
+set:  elm_body1=body1_beam2;
+set:  elm_body2=body2_beam2;
+set:  elm_body3=body3_beam2;
+set:  NODE_1=TRAV_CSX;
+set:  NODE_2=MPOINT_BEAM_2;
+set:  NODE_3=TRAV_CDX;
+set:  RSYS_NODE_1=RSYS_TRAV_CSX;
+set:  RSYS_NODE_2=RSYS_cbeam_2;
+set:  RSYS_NODE_3=RSYS_TRAV_CDX;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
+
 #_______________________________________________________________________________
 #COSTRUZIONE TRAVE: beam3
 set: const integer ASM_beam3=1003; #id assembly
 set: const integer body1_beam3=301;
 set: const integer body2_beam3=302;
 set: const integer body3_beam3=303;
-#definiamo prima i parametri concentrati per il comportamento dinamico
-body: body1_beam3, TRAV_CDX,
-						(L_elem_telaio/4.)*m_0,
-						(L_elem_telaio/8.), 0., 0., #qua l'offset dovrebbe essere positivo per spostare la massa verso il centro trave
-						diag, (L_elem_telaio/4.)*Ispec_0, 1./12.*(L_elem_telaio/4.)^3*m_0, 1./12.*(L_elem_telaio/4.)^3*m_0;
-body: body2_beam3 ,MPOINT_BEAM_3,
-						(L_elem_telaio/2.)*m_0,
-						null, #qua niente offset perché siamo al centro trave
-						diag, (L_elem_telaio/2.)*Ispec_0, 1./12.*(L_elem_telaio/2.)^3*m_0, 1./12.*(L_elem_telaio/2.)^3*m_0;
-body: body3_beam3, TRAV_DX,
-						(L_elem_telaio/4.)*m_0,
-						-(L_elem_telaio/8.), 0., 0., #qua negativo per spostare la massa verso il centro trave
-						diag, (L_elem_telaio/4.)*Ispec_0, 1./12.*(L_elem_telaio/4.)^3*m_0, 1./12.*(L_elem_telaio/4.)^3*m_0;
-#definizione trave
-beam: ASM_beam3, #id assembly
-		TRAV_CDX,null, #link ai corpi + orientazione
-		MPOINT_BEAM_3,null, #link ai corpi + orientazione
-		TRAV_DX,null, #link ai corpi + orientazione
-		eye,
-		linear elastic generic,
-				diag, EA_0, EA_0, EA_0, EJflex_0, EJflex_0, EJtors_0,
-		same,
-		same;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam3;
+set:  elm_body1=body1_beam3;
+set:  elm_body2=body2_beam3;
+set:  elm_body3=body3_beam3;
+set:  NODE_1=TRAV_CDX;
+set:  NODE_2=MPOINT_BEAM_3;
+set:  NODE_3=TRAV_DX;
+set:  RSYS_NODE_1=RSYS_TRAV_CDX;
+set:  RSYS_NODE_2=RSYS_cbeam_3;
+set:  RSYS_NODE_3=RSYS_TRAV_DX;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
 
 #_______________________________________________________________________________
 #COSTRUZIONE TRAVE: beam4
-#adesso che la beam è inclinata definisco i sistemi di riferimento locali
-set: const integer REF_beam4=1804;
-reference: REF_beam4,
-  reference, global, L_0,0.,0.,
-	reference, global,
-	 		1, 0.,0.,1.,
-			2, 0.,1.,0.,
-	reference, global, null,
-	reference, global, null;
 #ora lavoro sulla trave
 set: const integer ASM_beam4=1004; #id assembly
 set: const integer body1_beam4=401;
 set: const integer body2_beam4=402;
 set: const integer body3_beam4=403;
-#definiamo prima i parametri concentrati per il comportamento dinamico
-#attenzione a sistemare l'orientazione perché ora andiamo verso l'alto
-body: body1_beam4, TRAV_DX,
-						(L_elem_telaio/4.)*m_0,
-						reference, REF_beam4, -(L_elem_telaio/8.),0.,0., #qua l'offset dovrebbe essere negativo rispetto al centro per spostare la massa verso il centro trave
-						diag, (L_elem_telaio/4.)*Ispec_0, 1./12.*(L_elem_telaio/4.)^3*m_0, 1./12.*(L_elem_telaio/4.)^3*m_0,
-						inertial, reference, REF_beam4, eye;
-body: body2_beam4 ,MPOINT_BEAM_4,
-						(L_elem_telaio/2.)*m_0,
-						reference, REF_beam4, null, #qua niente offset perché siamo al centro trave
-						diag, (L_elem_telaio/2.)*Ispec_0, 1./12.*(L_elem_telaio/2.)^3*m_0, 1./12.*(L_elem_telaio/2.)^3*m_0,
-						inertial, reference, REF_beam4, eye;
-body: body3_beam4, MONT_CD,
-						(L_elem_telaio/4.)*m_0,
-						reference, REF_beam4, (L_elem_telaio/8.),0.,0., #qua negativo per spostare la massa verso il centro trave
-						diag, (L_elem_telaio/4.)*Ispec_0, 1./12.*(L_elem_telaio/4.)^3*m_0, 1./12.*(L_elem_telaio/4.)^3*m_0,
-						inertial, reference, REF_beam4, eye;
-#in questo caso ricordarsi che tutto il tensore di inerzia è riferito alle rotazioni del sistema di riferimento locale!!!
-#Andrebbero confrontate con le precedenti sulle travi orizzontali col sistema globale
-#definizione trave
-beam: ASM_beam4, #id assembly
-		TRAV_DX,null, #link ai corpi + orientazione
-		MPOINT_BEAM_4,null, #link ai corpi + orientazione
-		MONT_CD,null, #link ai corpi + orientazione
-		eye,
-		linear elastic generic,
-				diag, EA_0, EA_0, EA_0, EJflex_0, EJflex_0, EJtors_0,
-		same,
-		same;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam4;
+set:  elm_body1=body1_beam4;
+set:  elm_body2=body2_beam4;
+set:  elm_body3=body3_beam4;
+set:  NODE_1=TRAV_DX;
+set:  NODE_2=MPOINT_BEAM_4;
+set:  NODE_3=MONT_CD;
+set:  RSYS_NODE_1=RSYS_TRAV_DX_vert;
+set:  RSYS_NODE_2=RSYS_cbeam_4;
+set:  RSYS_NODE_3=RSYS_MONT_CD;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
 
+#_______________________________________________________________________________
+#COSTRUZIONE TRAVE: beam5
+#ora lavoro sulla trave
+set: const integer ASM_beam5=1005; #id assembly
+set: const integer body1_beam5=501;
+set: const integer body2_beam5=502;
+set: const integer body3_beam5=503;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam5;
+set:  elm_body1=body1_beam5;
+set:  elm_body2=body2_beam5;
+set:  elm_body3=body3_beam5;
+set:  NODE_1=MONT_CD;
+set:  NODE_2=MPOINT_BEAM_5;
+set:  NODE_3=MONT_CU;
+set:  RSYS_NODE_1=RSYS_MONT_CD;
+set:  RSYS_NODE_2=RSYS_cbeam_5;
+set:  RSYS_NODE_3=RSYS_MONT_CU;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
+
+#_______________________________________________________________________________
+#COSTRUZIONE TRAVE: beam6
+#ora lavoro sulla trave
+set: const integer ASM_beam6=1006; #id assembly
+set: const integer body1_beam6=601;
+set: const integer body2_beam6=602;
+set: const integer body3_beam6=603;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam6;
+set:  elm_body1=body1_beam6;
+set:  elm_body2=body2_beam6;
+set:  elm_body3=body3_beam6;
+set:  NODE_1=MONT_CU;
+set:  NODE_2=MPOINT_BEAM_6;
+set:  NODE_3=MONT_U;
+set:  RSYS_NODE_1=RSYS_MONT_CU;
+set:  RSYS_NODE_2=RSYS_cbeam_6;
+set:  RSYS_NODE_3=RSYS_MONT_U;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
 
 end: elements;
