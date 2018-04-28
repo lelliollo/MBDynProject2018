@@ -38,7 +38,7 @@ begin: initial value;
 
 tolerance: 1e-6;
 	max iterations: 30;
-	derivatives coefficient: 1.e-6;
+	derivatives coefficient: 1.e-7;
 
 	#This is the solver setup part. Not necessary for the code
 	linear solver: naive, colamd, mt, 1;
@@ -96,7 +96,7 @@ set: real M_rb=rho_peso*L_peso* pigreco/4.*D_peso^2.; #massa concentrata estremi
 set: real Izz_rb = 0.5*M_rb*r_peso^2.; #inerzia concentrata estremità croce
 set: real Ixx_rb = 1/12.*M_rb*(3.*r_peso^2.+L_peso^2.); #inerzia concentrata estremità croce
 
-set: real v0_gomito=-0.8; #velocità iniziale gomito
+set: real v0_gomito=-0.01; #velocità iniziale gomito
 
 set: real L_elem_telaio=L_0/3.;
 set: real L_elem_croce=L/2.;
@@ -150,7 +150,7 @@ joints:
 	#+2 #connessioni interne montante
 	#+4 #connessioni montante - croce
 	#+4 #connessioni interne croce
-	+4 #connessioni masse-croce
+	#+4 #connessioni masse-croce
 	;
 
 beams:
@@ -272,8 +272,7 @@ reference, RSYS_TRAV_DX, null
 structural: TRAV_DX, dynamic,
 reference, RSYS_TRAV_DX, null,
 reference, RSYS_TRAV_DX,eye,
-reference, RSYS_TRAV_DX,
-	0.,0.,v0_gomito, #velocità iniziali
+reference, global, 0.,v0_gomito,0.,  #velocità iniziali
 reference, RSYS_TRAV_DX, null;
 #Definisco il sistema di riferimento locale e poi il nodo MONT_CD
 reference: RSYS_MONT_CD,
@@ -422,7 +421,8 @@ reference: RSYS_C_e_1,
 reference, RSYS_C_i_1,
 	L_elem_croce, 0.,0.,
 reference,  RSYS_C_i_1,eye,
-reference,  RSYS_C_i_1,null,
+reference,  global,
+	0.,0.,v0_gomito,
 reference,  RSYS_C_i_1,null;
 
 structural: NODOC_e_1, dynamic,
@@ -919,5 +919,167 @@ set:  RSYS_NODE_2=RSYS_cbeam_e_1;
 set:  RSYS_NODE_3=RSYS_C_e_1;
 #chiama l'elemento
 include: "MB_beam3_mass.elem";
+
+#_______________________________________________________________________________
+#COSTRUZIONE TRAVE: croce_2_i
+#ora lavoro sulla trave
+set: const integer ASM_beam_croce_2_i=11003; #id assembly
+set: const integer body1_beam_croce_2_i=1301;
+set: const integer body2_beam_croce_2_i=1302;
+set: const integer body3_beam_croce_2_i=1303;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam_croce_2_i;
+set:  elm_body1=body1_beam_croce_2_i;
+set:  elm_body2=body2_beam_croce_2_i;
+set:  elm_body3=body3_beam_croce_2_i;
+set:  NODE_1=MONT_U;
+set:  NODE_2=MPOINT_CBEAM_2_i;
+set:  NODE_3=NODOC_i_2;
+set:  RSYS_NODE_1=RSYS_ORI_C_2;
+set:  RSYS_NODE_2=RSYS_cbeam_i_2;
+set:  RSYS_NODE_3=RSYS_C_i_2;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
+
+#_______________________________________________________________________________
+#COSTRUZIONE TRAVE: croce_2_e
+#ora lavoro sulla trave
+set: const integer ASM_beam_croce_2_e=11004; #id assembly
+set: const integer body1_beam_croce_2_e=1401;
+set: const integer body2_beam_croce_2_e=1402;
+set: const integer body3_beam_croce_2_e=1403;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam_croce_2_e;
+set:  elm_body1=body1_beam_croce_2_e;
+set:  elm_body2=body2_beam_croce_2_e;
+set:  elm_body3=body3_beam_croce_2_e;
+set:  NODE_1=NODOC_i_2;
+set:  NODE_2=MPOINT_CBEAM_2_e;
+set:  NODE_3=NODOC_e_2;
+set:  RSYS_NODE_1=RSYS_C_i_2;
+set:  RSYS_NODE_2=RSYS_cbeam_e_2;
+set:  RSYS_NODE_3=RSYS_C_e_2;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
+
+#_______________________________________________________________________________
+#COSTRUZIONE TRAVE: croce_3_i
+#ora lavoro sulla trave
+set: const integer ASM_beam_croce_3_i=11005; #id assembly
+set: const integer body1_beam_croce_3_i=1501;
+set: const integer body2_beam_croce_3_i=1502;
+set: const integer body3_beam_croce_3_i=1503;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam_croce_3_i;
+set:  elm_body1=body1_beam_croce_3_i;
+set:  elm_body2=body2_beam_croce_3_i;
+set:  elm_body3=body3_beam_croce_3_i;
+set:  NODE_1=MONT_U;
+set:  NODE_2=MPOINT_CBEAM_3_i;
+set:  NODE_3=NODOC_i_3;
+set:  RSYS_NODE_1=RSYS_ORI_C_3;
+set:  RSYS_NODE_2=RSYS_cbeam_i_3;
+set:  RSYS_NODE_3=RSYS_C_i_3;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
+
+#_______________________________________________________________________________
+#COSTRUZIONE TRAVE: croce_3_e
+#ora lavoro sulla trave
+set: const integer ASM_beam_croce_3_e=11006; #id assembly
+set: const integer body1_beam_croce_3_e=1601;
+set: const integer body2_beam_croce_3_e=1602;
+set: const integer body3_beam_croce_3_e=1603;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam_croce_3_e;
+set:  elm_body1=body1_beam_croce_3_e;
+set:  elm_body2=body2_beam_croce_3_e;
+set:  elm_body3=body3_beam_croce_3_e;
+set:  NODE_1=NODOC_i_3;
+set:  NODE_2=MPOINT_CBEAM_3_e;
+set:  NODE_3=NODOC_e_3;
+set:  RSYS_NODE_1=RSYS_C_i_3;
+set:  RSYS_NODE_2=RSYS_cbeam_e_3;
+set:  RSYS_NODE_3=RSYS_C_e_3;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
+
+#_______________________________________________________________________________
+#COSTRUZIONE TRAVE: croce_4_i
+#ora lavoro sulla trave
+set: const integer ASM_beam_croce_4_i=11007; #id assembly
+set: const integer body1_beam_croce_4_i=1701;
+set: const integer body2_beam_croce_4_i=1702;
+set: const integer body3_beam_croce_4_i=1703;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam_croce_4_i;
+set:  elm_body1=body1_beam_croce_4_i;
+set:  elm_body2=body2_beam_croce_4_i;
+set:  elm_body3=body3_beam_croce_4_i;
+set:  NODE_1=MONT_U;
+set:  NODE_2=MPOINT_CBEAM_4_i;
+set:  NODE_3=NODOC_i_4;
+set:  RSYS_NODE_1=RSYS_ORI_C_4;
+set:  RSYS_NODE_2=RSYS_cbeam_i_4;
+set:  RSYS_NODE_3=RSYS_C_i_4;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
+
+#_______________________________________________________________________________
+#COSTRUZIONE TRAVE: croce_4_e
+#ora lavoro sulla trave
+set: const integer ASM_beam_croce_4_e=11008; #id assembly
+set: const integer body1_beam_croce_4_e=1801;
+set: const integer body2_beam_croce_4_e=1802;
+set: const integer body3_beam_croce_4_e=1803;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam_croce_4_e;
+set:  elm_body1=body1_beam_croce_4_e;
+set:  elm_body2=body2_beam_croce_4_e;
+set:  elm_body3=body3_beam_croce_4_e;
+set:  NODE_1=NODOC_i_4;
+set:  NODE_2=MPOINT_CBEAM_4_e;
+set:  NODE_3=NODOC_e_4;
+set:  RSYS_NODE_1=RSYS_C_i_4;
+set:  RSYS_NODE_2=RSYS_cbeam_e_4;
+set:  RSYS_NODE_3=RSYS_C_e_4;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
+
+#§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*
+#ATTACCO LE MASSE IN FONDO ALLA CROCE
+
+set: const integer MASS_C_1=20001;
+set: const integer MASS_C_2=20002;
+set: const integer MASS_C_3=20003;
+set: const integer MASS_C_4=20004;
+
+body: MASS_C_1, NODOC_e_1,
+				M_rb,
+				reference, RSYS_C_e_1, null,
+				diag, Ixx_rb, Izz_rb, Izz_rb,
+				inertial, reference, RSYS_C_e_1, eye
+;
+
+body: MASS_C_2, NODOC_e_2,
+				M_rb,
+				reference, RSYS_C_e_2, null,
+				diag, Ixx_rb, Izz_rb, Izz_rb,
+				inertial, reference, RSYS_C_e_2, eye
+;
+
+body: MASS_C_3, NODOC_e_3,
+				M_rb,
+				reference, RSYS_C_e_3, null,
+				diag, Ixx_rb, Izz_rb, Izz_rb,
+				inertial, reference, RSYS_C_e_3, eye
+;
+
+body: MASS_C_4, NODOC_e_4,
+				M_rb,
+				reference, RSYS_C_e_4, null,
+				diag, Ixx_rb, Izz_rb, Izz_rb,
+				inertial, reference, RSYS_C_e_4, eye
+;
 
 end: elements;
