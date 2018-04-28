@@ -865,4 +865,59 @@ set:  RSYS_NODE_3=RSYS_MONT_U;
 #chiama l'elemento
 include: "MB_beam3_mass.elem";
 
+#§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*
+#CARATTERISTICHE FISICHE CROCE COMUNI A TUTTI GLI ELM
+set: L_elem=L_elem_croce;
+set: m_elem=m;
+set: Ispec_elem=Ispec;
+set: EA_elem=EA;
+set: GA_shear_z_elem=GA;
+set: GA_shear_y_elem=GA;
+set: EJ_tors_elem=EJtors;
+set: EJ_flex_y_elem=EJflex;
+set: EJ_flex_z_elem=EJflex;
+
+#§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*
+#_______________________________________________________________________________
+#COSTRUZIONE TRAVE: croce_1_i
+#ora lavoro sulla trave
+set: const integer ASM_beam_croce_1_i=11001; #id assembly
+set: const integer body1_beam_croce_1_i=1101;
+set: const integer body2_beam_croce_1_i=1102;
+set: const integer body3_beam_croce_1_i=1103;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam_croce_1_i;
+set:  elm_body1=body1_beam_croce_1_i;
+set:  elm_body2=body2_beam_croce_1_i;
+set:  elm_body3=body3_beam_croce_1_i;
+set:  NODE_1=MONT_U;
+set:  NODE_2=MPOINT_CBEAM_1_i;
+set:  NODE_3=NODOC_i_1;
+set:  RSYS_NODE_1=RSYS_ORI_C_1;
+set:  RSYS_NODE_2=RSYS_cbeam_i_1;
+set:  RSYS_NODE_3=RSYS_C_i_1;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
+
+#_______________________________________________________________________________
+#COSTRUZIONE TRAVE: croce_1_e
+#ora lavoro sulla trave
+set: const integer ASM_beam_croce_1_e=11002; #id assembly
+set: const integer body1_beam_croce_1_e=1201;
+set: const integer body2_beam_croce_1_e=1202;
+set: const integer body3_beam_croce_1_e=1203;
+#definiamo tutti i parametri dell'elemento
+set:  elm_ASM_id= ASM_beam_croce_1_e;
+set:  elm_body1=body1_beam_croce_1_e;
+set:  elm_body2=body2_beam_croce_1_e;
+set:  elm_body3=body3_beam_croce_1_e;
+set:  NODE_1=NODOC_i_1;
+set:  NODE_2=MPOINT_CBEAM_1_e;
+set:  NODE_3=NODOC_e_1;
+set:  RSYS_NODE_1=RSYS_C_i_1;
+set:  RSYS_NODE_2=RSYS_cbeam_e_1;
+set:  RSYS_NODE_3=RSYS_C_e_1;
+#chiama l'elemento
+include: "MB_beam3_mass.elem";
+
 end: elements;
