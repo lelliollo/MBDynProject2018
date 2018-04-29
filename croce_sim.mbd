@@ -91,10 +91,11 @@ remark: "=======> Controllo parametri telaio (A,m,EA,GA,Jflex,Jtors,Ispec)", A_0
 set: real rho_peso=7.8e3; #densità massa concentrata [kg/m3]
 set: real L_peso=10.e-3; #lunghezza peso [m]
 set: real D_peso=25.e-3; #diametro peso [m]
-set: real r_peso=0.5*D_peso; #reggio
+set: real r_peso=0.5*D_peso; #raggio
 set: real M_rb=rho_peso*L_peso* pigreco/4.*D_peso^2.; #massa concentrata estremità croce
-set: real Izz_rb = 0.5*M_rb*r_peso^2.; #inerzia concentrata estremità croce
-set: real Ixx_rb = 1/12.*M_rb*(3.*r_peso^2.+L_peso^2.); #inerzia concentrata estremità croce
+set: real Ixx_rb = 0.5*M_rb*r_peso^2.; #inerzia concentrata estremità croce
+set: real Izz_rb = 1/12.*M_rb*(3.*r_peso^2.+L_peso^2.); #inerzia concentrata estremità croce
+remark: "=======> Controllo parametri massa concentrata (M,Ixx,Izz)", M_rb,Ixx_rb, Izz_rb ;
 
 set: real v0_gomito=-0.01; #velocità iniziale gomito
 

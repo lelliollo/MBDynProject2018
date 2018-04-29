@@ -85,10 +85,10 @@ body: 1801 11 0.00339292 0.0125 0 -1.04083e-17 2.71434e-08 0 4.41433e-22 0 7.068
 body: 1802 29 0.00678584 0 0 0 5.42867e-08 0 0 0 1.41372e-06 0 0 0 1.41372e-06
 body: 1803 15 0.00339292 -0.0125 0 0 2.71434e-08 0 0 0 7.06858e-07 0 0 0 7.06858e-07
 beam3: 11008 11 0 0 0 29 0 0 0 15 0 0 0
-body: 20001 12 0.0382882 0 0 0 1.8147e-06 0 0 0 2.99126e-06 0 0 0 2.99126e-06
-body: 20002 13 0.0382882 0 0 0 1.8147e-06 0 0 0 2.99126e-06 0 0 0 2.99126e-06
-body: 20003 14 0.0382882 0 0 0 1.8147e-06 0 0 0 2.99126e-06 0 0 0 2.99126e-06
-body: 20004 15 0.0382882 0 0 0 1.8147e-06 0 0 0 2.99126e-06 0 0 0 2.99126e-06
+body: 20001 12 0.0382882 0 0 0 2.99126e-06 0 0 0 1.8147e-06 0 0 0 1.8147e-06
+body: 20002 13 0.0382882 0 0 0 2.99126e-06 0 0 0 1.8147e-06 0 0 0 1.8147e-06
+body: 20003 14 0.0382882 0 0 0 2.99126e-06 0 0 0 1.8147e-06 0 0 0 1.8147e-06
+body: 20004 15 0.0382882 0 0 0 2.99126e-06 0 0 0 1.8147e-06 0 0 0 1.8147e-06
 struct node dofs: 0 12 24 36 48 60 72 84 96 108 120 132 144 156 168 180 192 204 216 228 240 252 264 276 288 300 312 324 336
 struct node eqs: 6 18 30 42 54 66 78 90 102 114 126 138 150 162 174 186 198 210 222 234 246 258 270 282 294 306 318 330 342
 struct node momentum dofs: 6 18 30 42 54 66 78 90 102 114 126 138 150 162 174 186 198 210 222 234 246 258 270 282 294 306 318 330 342
@@ -141,8 +141,8 @@ Symbol table:
   real Ispec = 1.08573e-06
   real Ispec_0 = 1.34193e-05
   real Ispec_elem = 1.08573e-06
-  real Ixx_rb = 1.8147e-06
-  real Izz_rb = 2.99126e-06
+  real Ixx_rb = 2.99126e-06
+  real Izz_rb = 1.8147e-06
   real Jflex = 2.01062e-10
   real Jflex_0 = 2.48505e-09
   real Jtors = 4.02124e-10
@@ -320,15 +320,15 @@ Environment:
   CLUTTER_IM_MODULE=xim
   XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/alberto
   SESSION=ubuntu
-  GIO_LAUNCHED_DESKTOP_FILE_PID=1954
+  GIO_LAUNCHED_DESKTOP_FILE_PID=2213
   GPG_AGENT_INFO=/home/alberto/.gnupg/S.gpg-agent:0:1
   TERM=xterm-256color
   SHELL=/bin/bash
   XDG_MENU_PREFIX=gnome-
-  DESKTOP_STARTUP_ID=compiz-1543-alberto-HP-EliteBook-8460p-/usr/share/atom/atom-0_TIME14383
+  DESKTOP_STARTUP_ID=compiz-1639-alberto-HP-EliteBook-8460p-/usr/share/atom/atom-0_TIME5397360
   QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
   GNOME_KEYRING_CONTROL=
-  UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1158
+  UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1161
   GTK_MODULES=gail:atk-bridge:unity-gtk-module
   USER=alberto
   QT_ACCESSIBILITY=1
@@ -338,6 +338,7 @@ Environment:
   XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
   SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
   DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
+  SESSION_MANAGER=local/alberto-HP-EliteBook-8460p:@/tmp/.ICE-unix/1401,unix/alberto-HP-EliteBook-8460p:/tmp/.ICE-unix/1401
   GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/atom.desktop
   XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg
   UNITY_DEFAULT_PROFILE=unity
@@ -371,7 +372,7 @@ Environment:
   COMPIZ_BIN_PATH=/usr/bin/
   QT4_IM_MODULE=xim
   XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
-  DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-G07Mv3FSoe
+  DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-GJEemHNmBt
   LESSOPEN=| /usr/bin/lesspipe %s
   INSTANCE=
   UPSTART_JOB=unity7
