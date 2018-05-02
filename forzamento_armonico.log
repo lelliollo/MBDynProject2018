@@ -1,0 +1,400 @@
+output frequency: 1
+structural node: 1 0 0 0 euler123 -0 0 0
+structural node: 2 0.1 0 0 euler123 -0 0 0
+structural node: 3 0.2 0 0 euler123 -0 0 0
+structural node: 4 0.3 0 0 euler123 -0 0 0
+structural node: 5 0.3 0 0.1 euler123 -0 -90 0
+structural node: 6 0.3 0 0.2 euler123 -0 -90 0
+structural node: 7 0.3 0 0.3 euler123 -0 -90 0
+structural node: 8 0.229289 -0.0707107 0.3 euler123 -90 -45 -180
+structural node: 12 0.158579 -0.141421 0.3 euler123 -90 -45 -180
+structural node: 9 0.370711 -0.0707107 0.3 euler123 90 -45 -2.48078e-15
+structural node: 13 0.441421 -0.141421 0.3 euler123 90 -45 -2.48078e-15
+structural node: 10 0.370711 0.0707107 0.3 euler123 90 45 2.48078e-15
+structural node: 14 0.441421 0.141421 0.3 euler123 90 45 2.48078e-15
+structural node: 11 0.229289 0.0707107 0.3 euler123 -90 45 180
+structural node: 15 0.158579 0.141421 0.3 euler123 -90 45 180
+structural node: 16 0.05 0 0 euler123 -0 0 0
+structural node: 17 0.15 0 0 euler123 -0 0 0
+structural node: 18 0.25 0 0 euler123 -0 0 0
+structural node: 19 0.3 0 0.05 euler123 -0 -90 0
+structural node: 20 0.3 0 0.15 euler123 -0 -90 0
+structural node: 21 0.3 0 0.25 euler123 -0 -90 0
+structural node: 22 0.264645 -0.0353553 0.3 euler123 -90 -45 -180
+structural node: 23 0.193934 -0.106066 0.3 euler123 -90 -45 -180
+structural node: 24 0.335355 -0.0353553 0.3 euler123 90 -45 -2.48078e-15
+structural node: 25 0.406066 -0.106066 0.3 euler123 90 -45 -2.48078e-15
+structural node: 26 0.335355 0.0353553 0.3 euler123 90 45 2.48078e-15
+structural node: 27 0.406066 0.106066 0.3 euler123 90 45 2.48078e-15
+structural node: 28 0.264645 0.0353553 0.3 euler123 -90 45 180
+structural node: 29 0.193934 0.106066 0.3 euler123 -90 45 180
+structural node: 600002 0 0 -0.1 euler123 -0 0 0
+clamp: 1 600002 0 0 0 1 0 0 0 1 0 0 0 1 600002 0 0 0 1 0 0 0 1 0 0 0 1
+totaljoint: 2 600002 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 0 0 0 1 1 0 0 0 1 0 0 0 1 1 1 0 0 0 0 1 1 1 0 0 0
+rod: 3 600002 0 0 0 1 0 0 0
+structural absolute force: 8088 1 0 0 0
+body: 101 1 0.0119282 0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+body: 102 16 0.0238565 0 0 0 6.70963e-07 0 0 0 4.9701e-06 0 0 0 4.9701e-06
+body: 103 2 0.0119282 -0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+beam3: 1001 1 0 0 0 16 0 0 0 2 0 0 0
+body: 201 2 0.0119282 0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+body: 202 17 0.0238565 0 0 0 6.70963e-07 0 0 0 4.9701e-06 0 0 0 4.9701e-06
+body: 203 3 0.0119282 -0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+beam3: 1002 2 0 0 0 17 0 0 0 3 0 0 0
+body: 301 3 0.0119282 0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+body: 302 18 0.0238565 0 0 0 6.70963e-07 0 0 0 4.9701e-06 0 0 0 4.9701e-06
+body: 303 4 0.0119282 -0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+beam3: 1003 3 0 0 0 18 0 0 0 4 0 0 0
+body: 401 4 0.0119282 0 0 0.0125 2.48505e-06 0 0 0 2.48505e-06 0 0 0 3.35482e-07
+body: 402 19 0.0238565 0 0 0 6.70963e-07 0 0 0 4.9701e-06 0 0 0 4.9701e-06
+body: 403 5 0.0119282 -0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+beam3: 1004 4 0 0 0 19 0 0 0 5 0 0 0
+body: 501 5 0.0119282 0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+body: 502 20 0.0238565 0 0 0 6.70963e-07 0 0 0 4.9701e-06 0 0 0 4.9701e-06
+body: 503 6 0.0119282 -0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+beam3: 1005 5 0 0 0 20 0 0 0 6 0 0 0
+body: 601 6 0.0119282 0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+body: 602 21 0.0238565 0 0 0 6.70963e-07 0 0 0 4.9701e-06 0 0 0 4.9701e-06
+body: 603 7 0.0119282 -0.0125 0 0 3.35482e-07 0 0 0 2.48505e-06 0 0 0 2.48505e-06
+beam3: 1006 6 0 0 0 21 0 0 0 7 0 0 0
+body: 1101 7 0.00339292 0 -0.00883883 0.00883883 7.06858e-07 0 0 0 3.67001e-07 3.39857e-07 0 3.39857e-07 3.67001e-07
+body: 1102 22 0.00678584 0 0 0 5.42867e-08 0 0 0 1.41372e-06 0 0 0 1.41372e-06
+body: 1103 8 0.00339292 -0.0125 0 -1.04083e-17 2.71434e-08 0 -4.41433e-22 0 7.06858e-07 0 -4.41433e-22 0 7.06858e-07
+beam3: 11001 7 0 0 0 22 0 0 0 8 0 0 0
+body: 1201 8 0.00339292 0.0125 0 1.04083e-17 2.71434e-08 0 -4.41433e-22 0 7.06858e-07 0 -4.41433e-22 0 7.06858e-07
+body: 1202 23 0.00678584 0 0 0 5.42867e-08 0 0 0 1.41372e-06 0 0 0 1.41372e-06
+body: 1203 12 0.00339292 -0.0125 0 0 2.71434e-08 0 0 0 7.06858e-07 0 0 0 7.06858e-07
+beam3: 11002 8 0 0 0 23 0 0 0 12 0 0 0
+body: 1301 7 0.00339292 0 -0.00883883 -0.00883883 7.06858e-07 0 0 0 3.67001e-07 -3.39857e-07 0 -3.39857e-07 3.67001e-07
+body: 1302 24 0.00678584 0 0 0 5.42867e-08 0 0 0 1.41372e-06 0 0 0 1.41372e-06
+body: 1303 9 0.00339292 -0.0125 0 -9.54098e-18 2.71434e-08 0 -4.04647e-22 0 7.06858e-07 0 -4.04647e-22 0 7.06858e-07
+beam3: 11003 7 0 0 0 24 0 0 0 9 0 0 0
+body: 1401 9 0.00339292 0.0125 0 9.54098e-18 2.71434e-08 0 -4.04647e-22 0 7.06858e-07 0 -4.04647e-22 0 7.06858e-07
+body: 1402 25 0.00678584 0 0 0 5.42867e-08 0 0 0 1.41372e-06 0 0 0 1.41372e-06
+body: 1403 13 0.00339292 -0.0125 0 -1.99493e-17 2.71434e-08 0 -8.46081e-22 0 7.06858e-07 0 -8.46081e-22 0 7.06858e-07
+beam3: 11004 9 0 0 0 25 0 0 0 13 0 0 0
+body: 1501 7 0.00339292 0 0.00883883 -0.00883883 7.06858e-07 0 0 0 3.67001e-07 3.39857e-07 0 3.39857e-07 3.67001e-07
+body: 1502 26 0.00678584 0 0 0 5.42867e-08 0 0 0 1.41372e-06 0 0 0 1.41372e-06
+body: 1503 10 0.00339292 -0.0125 0 9.54098e-18 2.71434e-08 0 4.04647e-22 0 7.06858e-07 0 4.04647e-22 0 7.06858e-07
+beam3: 11005 7 0 0 0 26 0 0 0 10 0 0 0
+body: 1601 10 0.00339292 0.0125 0 -9.54098e-18 2.71434e-08 0 4.04647e-22 0 7.06858e-07 0 4.04647e-22 0 7.06858e-07
+body: 1602 27 0.00678584 0 0 0 5.42867e-08 0 0 0 1.41372e-06 0 0 0 1.41372e-06
+body: 1603 14 0.00339292 -0.0125 0 1.99493e-17 2.71434e-08 0 8.46081e-22 0 7.06858e-07 0 8.46081e-22 0 7.06858e-07
+beam3: 11006 10 0 0 0 27 0 0 0 14 0 0 0
+body: 1701 7 0.00339292 0 0.00883883 0.00883883 7.06858e-07 0 0 0 3.67001e-07 -3.39857e-07 0 -3.39857e-07 3.67001e-07
+body: 1702 28 0.00678584 0 0 0 5.42867e-08 0 0 0 1.41372e-06 0 0 0 1.41372e-06
+body: 1703 11 0.00339292 -0.0125 0 1.04083e-17 2.71434e-08 0 4.41433e-22 0 7.06858e-07 0 4.41433e-22 0 7.06858e-07
+beam3: 11007 7 0 0 0 28 0 0 0 11 0 0 0
+body: 1801 11 0.00339292 0.0125 0 -1.04083e-17 2.71434e-08 0 4.41433e-22 0 7.06858e-07 0 4.41433e-22 0 7.06858e-07
+body: 1802 29 0.00678584 0 0 0 5.42867e-08 0 0 0 1.41372e-06 0 0 0 1.41372e-06
+body: 1803 15 0.00339292 -0.0125 0 0 2.71434e-08 0 0 0 7.06858e-07 0 0 0 7.06858e-07
+beam3: 11008 11 0 0 0 29 0 0 0 15 0 0 0
+body: 20001 12 0.0382882 0 0 0 2.99126e-06 0 0 0 1.8147e-06 0 0 0 1.8147e-06
+body: 20002 13 0.0382882 0 0 0 2.99126e-06 0 0 0 1.8147e-06 0 0 0 1.8147e-06
+body: 20003 14 0.0382882 0 0 0 2.99126e-06 0 0 0 1.8147e-06 0 0 0 1.8147e-06
+body: 20004 15 0.0382882 0 0 0 2.99126e-06 0 0 0 1.8147e-06 0 0 0 1.8147e-06
+struct node dofs: 0 12 24 36 48 60 72 84 96 108 120 132 144 156 168 180 192 204 216 228 240 252 264 276 288 300 312 324 336 348
+struct node eqs: 6 18 30 42 54 66 78 90 102 114 126 138 150 162 174 186 198 210 222 234 246 258 270 282 294 306 318 330 342 354
+struct node momentum dofs: 6 18 30 42 54 66 78 90 102 114 126 138 150 162 174 186 198 210 222 234 246 258 270 282 294 306 318 330 342 354
+struct node momentum eqs: 0 12 24 36 48 60 72 84 96 108 120 132 144 156 168 180 192 204 216 228 240 252 264 276 288 300 312 324 336 348
+struct displacement node dofs: 0 12 24 36 48 60 72 84 96 108 120 132 144 156 168 180 192 204 216 228 240 252 264 276 288 300 312 324 336 348
+struct displacement node eqs: 6 18 30 42 54 66 78 90 102 114 126 138 150 162 174 186 198 210 222 234 246 258 270 282 294 306 318 330 342 354
+struct displacement node momentum dofs: 6 18 30 42 54 66 78 90 102 114 126 138 150 162 174 186 198 210 222 234 246 258 270 282 294 306 318 330 342 354
+struct displacement node momentum eqs: 0 12 24 36 48 60 72 84 96 108 120 132 144 156 168 180 192 204 216 228 240 252 264 276 288 300 312 324 336 348
+struct node labels: 1 2 3 4 5 6 7 8 12 9 13 10 14 11 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 600002
+struct displacement node labels: 1 2 3 4 5 6 7 8 12 9 13 10 14 11 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 600002
+Symbol table:
+  real A = 5.02655e-05
+  const integer ASM_beam1 = 1001
+  const integer ASM_beam2 = 1002
+  const integer ASM_beam3 = 1003
+  const integer ASM_beam4 = 1004
+  const integer ASM_beam5 = 1005
+  const integer ASM_beam6 = 1006
+  const integer ASM_beam_croce_1_e = 11002
+  const integer ASM_beam_croce_1_i = 11001
+  const integer ASM_beam_croce_2_e = 11004
+  const integer ASM_beam_croce_2_i = 11003
+  const integer ASM_beam_croce_3_e = 11006
+  const integer ASM_beam_croce_3_i = 11005
+  const integer ASM_beam_croce_4_e = 11008
+  const integer ASM_beam_croce_4_i = 11007
+  real A_0 = 0.000176715
+  const real A_shaker = 100.
+  real D_peso = 0.025
+  real E = 7.2e+10
+  real EA = 3.61911e+06
+  real EA_0 = 1.27235e+07
+  real EA_elem = 3.61911e+06
+  real EJ_flex_y_elem = 14.4765
+  real EJ_flex_z_elem = 14.4765
+  real EJ_tors_elem = 28.9529
+  real EJflex = 14.4765
+  real EJflex_0 = 178.924
+  real EJtors = 28.9529
+  real EJtors_0 = 357.847
+  real E_0 = 7.2e+10
+  const bool FALSE = 0
+  real G = 2.70677e+10
+  real GA = 1.36057e+06
+  real GA_0 = 4.78325e+06
+  real GA_shear_y_elem = 1.36057e+06
+  real GA_shear_z_elem = 1.36057e+06
+  real G_0 = 2.70677e+10
+  real H_damp = 0.00015
+  const integer INT_MAX = 2147483647
+  const integer INT_MIN = -2147483648
+  real Ispec = 1.08573e-06
+  real Ispec_0 = 1.34193e-05
+  real Ispec_elem = 1.08573e-06
+  real Ixx_rb = 2.99126e-06
+  real Izz_rb = 1.8147e-06
+  real Jflex = 2.01062e-10
+  real Jflex_0 = 2.48505e-09
+  real Jtors = 4.02124e-10
+  real Jtors_0 = 4.9701e-09
+  real L = 0.2
+  real L_0 = 0.3
+  real L_elem = 0.1
+  real L_elem_croce = 0.1
+  real L_elem_telaio = 0.1
+  real L_peso = 0.01
+  const integer MASS_C_1 = 20001
+  const integer MASS_C_2 = 20002
+  const integer MASS_C_3 = 20003
+  const integer MASS_C_4 = 20004
+  const integer MONT_CD = 5
+  const integer MONT_CU = 6
+  const integer MONT_U = 7
+  const integer MPOINT_BEAM_1 = 16
+  const integer MPOINT_BEAM_2 = 17
+  const integer MPOINT_BEAM_3 = 18
+  const integer MPOINT_BEAM_4 = 19
+  const integer MPOINT_BEAM_5 = 20
+  const integer MPOINT_BEAM_6 = 21
+  const integer MPOINT_CBEAM_1_e = 23
+  const integer MPOINT_CBEAM_1_i = 22
+  const integer MPOINT_CBEAM_2_e = 25
+  const integer MPOINT_CBEAM_2_i = 24
+  const integer MPOINT_CBEAM_3_e = 27
+  const integer MPOINT_CBEAM_3_i = 26
+  const integer MPOINT_CBEAM_4_e = 29
+  const integer MPOINT_CBEAM_4_i = 28
+  real M_rb = 0.0382882
+  integer NODE_1 = 11
+  integer NODE_2 = 29
+  integer NODE_3 = 15
+  const integer NODE_shaker = 600002
+  const integer NODOC_e_1 = 12
+  const integer NODOC_e_2 = 13
+  const integer NODOC_e_3 = 14
+  const integer NODOC_e_4 = 15
+  const integer NODOC_i_1 = 8
+  const integer NODOC_i_2 = 9
+  const integer NODOC_i_3 = 10
+  const integer NODOC_i_4 = 11
+  const integer RAND_MAX = 2147483647
+  const real REAL_MAX = 1.79769e+308
+  const real REAL_MIN = 2.22507e-308
+  const integer RSYS_C_e_1 = 31001
+  const integer RSYS_C_e_2 = 31002
+  const integer RSYS_C_e_3 = 31003
+  const integer RSYS_C_e_4 = 31004
+  const integer RSYS_C_i_1 = 21001
+  const integer RSYS_C_i_2 = 21002
+  const integer RSYS_C_i_3 = 21003
+  const integer RSYS_C_i_4 = 21004
+  const integer RSYS_MONT_CD = 804
+  const integer RSYS_MONT_CU = 805
+  const integer RSYS_MONT_U = 806
+  integer RSYS_NODE_1 = 21004
+  integer RSYS_NODE_2 = 51004
+  integer RSYS_NODE_3 = 31004
+  const integer RSYS_ORI_C_1 = 11001
+  const integer RSYS_ORI_C_2 = 11002
+  const integer RSYS_ORI_C_3 = 11003
+  const integer RSYS_ORI_C_4 = 11004
+  const integer RSYS_TRAV_CDX = 802
+  const integer RSYS_TRAV_CSX = 801
+  const integer RSYS_TRAV_DX = 803
+  const integer RSYS_TRAV_DX_vert = 604
+  const integer RSYS_TRAV_SX = 601
+  const integer RSYS_cbeam_1 = 701
+  const integer RSYS_cbeam_2 = 702
+  const integer RSYS_cbeam_3 = 703
+  const integer RSYS_cbeam_4 = 704
+  const integer RSYS_cbeam_5 = 705
+  const integer RSYS_cbeam_6 = 706
+  const integer RSYS_cbeam_e_1 = 51001
+  const integer RSYS_cbeam_e_2 = 51002
+  const integer RSYS_cbeam_e_3 = 51003
+  const integer RSYS_cbeam_e_4 = 51004
+  const integer RSYS_cbeam_i_1 = 41001
+  const integer RSYS_cbeam_i_2 = 41002
+  const integer RSYS_cbeam_i_3 = 41003
+  const integer RSYS_cbeam_i_4 = 41004
+  const integer RSYS_shaker = 600001
+  const integer SHAKER_ACTION = 8088
+  const integer SHAKER_JOINT = 2
+  const integer SHAKER_ROD = 3
+  integer Step = 0
+  const integer TERRA_JOINT = 1
+  const integer TRAV_CDX = 3
+  const integer TRAV_CSX = 2
+  const integer TRAV_DX = 4
+  const integer TRAV_SX = 1
+  const bool TRUE = 1
+  real Time = 0.
+  real TimeStep = 0.
+  real Var = 0.
+  const integer body1_beam1 = 101
+  const integer body1_beam2 = 201
+  const integer body1_beam3 = 301
+  const integer body1_beam4 = 401
+  const integer body1_beam5 = 501
+  const integer body1_beam6 = 601
+  const integer body1_beam_croce_1_e = 1201
+  const integer body1_beam_croce_1_i = 1101
+  const integer body1_beam_croce_2_e = 1401
+  const integer body1_beam_croce_2_i = 1301
+  const integer body1_beam_croce_3_e = 1601
+  const integer body1_beam_croce_3_i = 1501
+  const integer body1_beam_croce_4_e = 1801
+  const integer body1_beam_croce_4_i = 1701
+  const integer body2_beam1 = 102
+  const integer body2_beam2 = 202
+  const integer body2_beam3 = 302
+  const integer body2_beam4 = 402
+  const integer body2_beam5 = 502
+  const integer body2_beam6 = 602
+  const integer body2_beam_croce_1_e = 1202
+  const integer body2_beam_croce_1_i = 1102
+  const integer body2_beam_croce_2_e = 1402
+  const integer body2_beam_croce_2_i = 1302
+  const integer body2_beam_croce_3_e = 1602
+  const integer body2_beam_croce_3_i = 1502
+  const integer body2_beam_croce_4_e = 1802
+  const integer body2_beam_croce_4_i = 1702
+  const integer body3_beam1 = 103
+  const integer body3_beam2 = 203
+  const integer body3_beam3 = 303
+  const integer body3_beam4 = 403
+  const integer body3_beam5 = 503
+  const integer body3_beam6 = 603
+  const integer body3_beam_croce_1_e = 1203
+  const integer body3_beam_croce_1_i = 1103
+  const integer body3_beam_croce_2_e = 1403
+  const integer body3_beam_croce_2_i = 1303
+  const integer body3_beam_croce_3_e = 1603
+  const integer body3_beam_croce_3_i = 1503
+  const integer body3_beam_croce_4_e = 1803
+  const integer body3_beam_croce_4_i = 1703
+  real d = 0.008
+  real d_0 = 0.015
+  real damp_ratio = 0.00015
+  const real deg2rad = 0.0174533
+  const real dt_sim = 0.001
+  const real e = 2.71828
+  integer elm_ASM_id = 11008
+  integer elm_body1 = 1801
+  integer elm_body2 = 1802
+  integer elm_body3 = 1803
+  const real f_shaker = 52.
+  const real ft2m = 0.3048
+  const real in2m = 0.0254
+  const real in2mm = 25.4
+  real k_shaker = 4000.
+  const real kg2lb = 2.20462
+  const real kg2slug = 0.0685218
+  const real lb2kg = 0.453592
+  real m = 0.135717
+  const real m2ft = 3.28084
+  const real m2in = 39.3701
+  real m_0 = 0.477129
+  real m_elem = 0.135717
+  const real mm2in = 0.0393701
+  real nu = 0.33
+  real nu_0 = 0.33
+  const real pi = 3.14159
+  const real pigreco = 3.14159
+  real r_peso = 0.0125
+  const real rad2deg = 57.2958
+  const real radice2 = 1.41421
+  real rho = 2700.
+  real rho_0 = 2700.
+  real rho_peso = 7800.
+  real sh_rod_L = 0.1
+  const real slug2kg = 14.5939
+  const real t_0 = 0.
+  const real t_stop = 2.
+  const real t_turnon_shaker = 0.2
+Environment:
+  XDG_VTNR=7
+  XDG_SESSION_ID=c2
+  TERM_PROGRAM=platformio-ide-terminal
+  CLUTTER_IM_MODULE=xim
+  XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/alberto
+  SESSION=ubuntu
+  GIO_LAUNCHED_DESKTOP_FILE_PID=2835
+  GPG_AGENT_INFO=/home/alberto/.gnupg/S.gpg-agent:0:1
+  TERM=xterm-256color
+  SHELL=/bin/bash
+  XDG_MENU_PREFIX=gnome-
+  DESKTOP_STARTUP_ID=compiz-1596-alberto-HP-EliteBook-8460p-/usr/share/atom/atom-0_TIME41414
+  QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
+  GNOME_KEYRING_CONTROL=
+  UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1182
+  GTK_MODULES=gail:atk-bridge:unity-gtk-module
+  USER=alberto
+  QT_ACCESSIBILITY=1
+  LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+  XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+  UNITY_HAS_3D_SUPPORT=true
+  XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+  SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+  DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
+  SESSION_MANAGER=local/alberto-HP-EliteBook-8460p:@/tmp/.ICE-unix/1422,unix/alberto-HP-EliteBook-8460p:/tmp/.ICE-unix/1422
+  GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/atom.desktop
+  XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg
+  UNITY_DEFAULT_PROFILE=unity
+  PATH=/home/alberto/bin:/home/alberto/.local/bin:/home/alberto/bin:/home/alberto/.local/bin:/home/alberto/bin:/home/alberto/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/usr/local/mbdyn/bin/:/snap/bin:/usr/local/mbdyn/bin/
+  DESKTOP_SESSION=ubuntu
+  QT_IM_MODULE=ibus
+  QT_QPA_PLATFORMTHEME=appmenu-qt5
+  WWW_HOME=http://www.google.com
+  PWD=/home/alberto/Documenti/progetti_MBDYN/MBDynProject2018
+  XDG_SESSION_TYPE=x11
+  JOB=unity-settings-daemon
+  XMODIFIERS=@im=ibus
+  LANG=it_IT.UTF-8
+  GNOME_KEYRING_PID=
+  MANDATORY_PATH=/usr/share/gconf/ubuntu.mandatory.path
+  GDM_LANG=it
+  IM_CONFIG_PHASE=1
+  COMPIZ_CONFIG_PROFILE=ubuntu
+  GDMSESSION=ubuntu
+  SESSIONTYPE=gnome-session
+  GTK2_MODULES=overlay-scrollbar
+  SHLVL=2
+  XDG_SEAT=seat0
+  HOME=/home/alberto
+  LANGUAGE=it
+  GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+  UPSTART_INSTANCE=
+  XDG_SESSION_DESKTOP=ubuntu
+  LOGNAME=alberto
+  UPSTART_EVENTS=xsession started
+  COMPIZ_BIN_PATH=/usr/bin/
+  QT4_IM_MODULE=xim
+  XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+  DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-iFNykA01iT
+  LESSOPEN=| /usr/bin/lesspipe %s
+  INSTANCE=
+  UPSTART_JOB=unity7
+  XDG_RUNTIME_DIR=/run/user/1000
+  DISPLAY=:0
+  GTK_IM_MODULE=ibus
+  XDG_CURRENT_DESKTOP=Unity
+  LESSCLOSE=/usr/bin/lesspipe %s %s
+  XAUTHORITY=/home/alberto/.Xauthority
+  _=/usr/local/mbdyn/bin/mbdyn
