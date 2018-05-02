@@ -10,7 +10,7 @@ Tfin=4;
 N=floor(Tfin*fsamp);
 
 f_pass=2;
-f_stop=60;
+f_stop=50;
 
 RMS_output=25;
 
@@ -53,7 +53,7 @@ sig_out=RMS_output.*ng_ZN;
 dg=input('Insert transition window?...(y/n)','s')
 if strcmp(dg,'y')
   disp('---->Transitioning...')
-  fin=tukeywin(N,0.15);
+  fin=tukeywin(N,0.2);
   sig_out=sig_out.*fin;
 end
 

@@ -108,7 +108,7 @@ remark: "=======> Controllo parametri massa concentrata (M,Ixx,Izz)", M_rb,Ixx_r
 set: real L_elem_telaio=L_0/3.;
 set: real L_elem_croce=L/2.;
 set: real H_damp=1.5e-4;
-set: real imbalance_share=0.03;
+set: real imbalance_share=0.01;
 
 #Variabili shaker
 set: real k_shaker=4.e+3; #rigidezza molla shaker [N/m]
