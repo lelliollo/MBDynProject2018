@@ -48,13 +48,8 @@ tolerance: 1e-4;
 	linear solver: naive, colamd, mt, 1;
 	nonlinear solver: newton raphson;
 	method: ms, 0.6;
-  eigenanalysis:
-			t_stop,
-			output matrices,
-			output eigenvectors,
-			output geometry,
-			use lapack;
-	derivatives tolerance: 1e38;
+	derivatives tolerance: 1e38; #tolleranza sul calcolo delle derivate (ricordarsi che non c'entra niente con il eigenan)
+
 
 end: initial value;
 

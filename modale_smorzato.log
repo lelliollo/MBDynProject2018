@@ -136,7 +136,6 @@ Symbol table:
   real GA_shear_y_elem = 1.36057e+06
   real GA_shear_z_elem = 1.36057e+06
   real G_0 = 2.70677e+10
-  real H_damp = 0.00015
   const integer INT_MAX = 2147483647
   const integer INT_MIN = -2147483648
   real Ispec = 1.08573e-06
@@ -281,9 +280,8 @@ Symbol table:
   const integer body3_beam_croce_4_i = 1703
   real d = 0.008
   real d_0 = 0.015
-  real damp_ratio = 0.00015
   const real deg2rad = 0.0174533
-  const real dt_sim = 0.005
+  const real dt_sim = 0.0005
   const real e = 2.71828
   integer elm_ASM_id = 11008
   integer elm_body1 = 1801
@@ -313,7 +311,7 @@ Symbol table:
   real rho_peso = 7800.
   const real slug2kg = 14.5939
   const real t_0 = 0.
-  const real t_stop = 1.
+  const real t_stop = 0.2
   real v0_gomito = -0.01
 Environment:
   XDG_VTNR=7
@@ -322,15 +320,15 @@ Environment:
   CLUTTER_IM_MODULE=xim
   XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/alberto
   SESSION=ubuntu
-  GIO_LAUNCHED_DESKTOP_FILE_PID=2213
+  GIO_LAUNCHED_DESKTOP_FILE_PID=2742
   GPG_AGENT_INFO=/home/alberto/.gnupg/S.gpg-agent:0:1
   TERM=xterm-256color
   SHELL=/bin/bash
   XDG_MENU_PREFIX=gnome-
-  DESKTOP_STARTUP_ID=compiz-1639-alberto-HP-EliteBook-8460p-/usr/share/atom/atom-0_TIME5397360
+  DESKTOP_STARTUP_ID=compiz-1800-alberto-HP-EliteBook-8460p-/usr/share/atom/atom-1_TIME480860
   QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
   GNOME_KEYRING_CONTROL=
-  UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1161
+  UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1420
   GTK_MODULES=gail:atk-bridge:unity-gtk-module
   USER=alberto
   QT_ACCESSIBILITY=1
@@ -340,7 +338,6 @@ Environment:
   XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
   SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
   DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
-  SESSION_MANAGER=local/alberto-HP-EliteBook-8460p:@/tmp/.ICE-unix/1401,unix/alberto-HP-EliteBook-8460p:/tmp/.ICE-unix/1401
   GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/atom.desktop
   XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg
   UNITY_DEFAULT_PROFILE=unity
@@ -374,7 +371,7 @@ Environment:
   COMPIZ_BIN_PATH=/usr/bin/
   QT4_IM_MODULE=xim
   XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
-  DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-GJEemHNmBt
+  DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-3VcjRXEU72
   LESSOPEN=| /usr/bin/lesspipe %s
   INSTANCE=
   UPSTART_JOB=unity7

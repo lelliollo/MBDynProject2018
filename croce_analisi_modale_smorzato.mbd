@@ -49,7 +49,7 @@ tolerance: 1e-4;
 	nonlinear solver: newton raphson;
 	method: ms, 0.6;
   eigenanalysis:
-			t_stop,
+			t_stop-dt_sim,
 			output matrices,
 			output eigenvectors,
 			output geometry,
@@ -108,7 +108,6 @@ set: real Ixx_rb = 0.5*M_rb*r_peso^2.; #inerzia concentrata estremità croce
 set: real Izz_rb = 1/12.*M_rb*(3.*r_peso^2.+L_peso^2.); #inerzia concentrata estremità croce
 remark: "=======> Controllo parametri massa concentrata (M,Ixx,Izz)", M_rb,Ixx_rb, Izz_rb ;
 
-set: real v0_gomito=-0.01; #velocità iniziale gomito
 
 set: real L_elem_telaio=L_0/3.;
 set: real L_elem_croce=L/2.;
@@ -158,12 +157,6 @@ rigid bodies:
 
 joints:
 	+1 #connessione traverso - GROUND
-	#+2 #connessioni interne traverso
-	#+1 #connessione traverso - montante
-	#+2 #connessioni interne montante
-	#+4 #connessioni montante - croce
-	#+4 #connessioni interne croce
-	#+4 #connessioni masse-croce
 	;
 
 beams:
@@ -743,7 +736,7 @@ joint: TERRA_JOINT,
 			node,
 			node;
 #§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*
-#CARATTERISTICHE FISICHE TELAIO COMUNI A TUTTI GLI ELM
+#VARIABILI FISICHE COMUNI A TUTTE LE TRAVI TELAIO
 set: L_elem=L_elem_telaio;
 set: m_elem=m_0;
 set: Ispec_elem=Ispec_0;

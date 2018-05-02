@@ -335,15 +335,15 @@ Environment:
   CLUTTER_IM_MODULE=xim
   XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/alberto
   SESSION=ubuntu
-  GIO_LAUNCHED_DESKTOP_FILE_PID=2835
+  GIO_LAUNCHED_DESKTOP_FILE_PID=1769
   GPG_AGENT_INFO=/home/alberto/.gnupg/S.gpg-agent:0:1
   TERM=xterm-256color
   SHELL=/bin/bash
   XDG_MENU_PREFIX=gnome-
-  DESKTOP_STARTUP_ID=compiz-1596-alberto-HP-EliteBook-8460p-/usr/share/atom/atom-0_TIME41414
+  DESKTOP_STARTUP_ID=compiz-1560-alberto-HP-EliteBook-8460p-/usr/share/atom/atom-0_TIME15388
   QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
   GNOME_KEYRING_CONTROL=
-  UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1182
+  UPSTART_SESSION=unix:abstract=/com/ubuntu/upstart-session/1000/1151
   GTK_MODULES=gail:atk-bridge:unity-gtk-module
   USER=alberto
   QT_ACCESSIBILITY=1
@@ -353,7 +353,7 @@ Environment:
   XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
   SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
   DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
-  SESSION_MANAGER=local/alberto-HP-EliteBook-8460p:@/tmp/.ICE-unix/1422,unix/alberto-HP-EliteBook-8460p:/tmp/.ICE-unix/1422
+  SESSION_MANAGER=local/alberto-HP-EliteBook-8460p:@/tmp/.ICE-unix/1405,unix/alberto-HP-EliteBook-8460p:/tmp/.ICE-unix/1405
   GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/atom.desktop
   XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg
   UNITY_DEFAULT_PROFILE=unity
@@ -387,7 +387,7 @@ Environment:
   COMPIZ_BIN_PATH=/usr/bin/
   QT4_IM_MODULE=xim
   XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
-  DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-iFNykA01iT
+  DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-RalAKch0Mp
   LESSOPEN=| /usr/bin/lesspipe %s
   INSTANCE=
   UPSTART_JOB=unity7
