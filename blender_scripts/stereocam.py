@@ -26,7 +26,7 @@ from math import *
 
 #Stereo rig extrinsics: to be parsed from file
 baseline=0.35;
-attitude=12;
+attitude=12.0;
 
 # Camera intrisics: to be imported from external file
 # rember that camera has fov oriented towards z -global
@@ -36,15 +36,19 @@ res_x = 2592
 res_y = 1944
 sensor_size = 1/2.5*25.4
 
+#===============================================================
+#                   STEREO RIG HANDLE
 #Create the stereo rig central node
 bpy.ops.object.empty_add(type='PLAIN_AXES', radius=1, view_align=False, location=(0,0,0))
 StereoCenterObj=bpy.context.scene.objects.active
 StereoCenterObj.name='StereoRigOrig'
 StereoCenter=bpy.data.objects[StereoCenterObj.name]
 
+#===============================================================
+#                   CAM_0
 # Create the camera 0 and set extrinsics
 pos = Vector((-baseline*0.5, 0.0, 0.0))
-or_angle = attitude*0.5
+or_angle =- radians( attitude)
 bpy.ops.object.camera_add(location = pos)
 
 camobj_0 = bpy.context.scene.objects.active
@@ -63,10 +67,11 @@ cam0.sensor_width = sensor_size*cos(atan(res_y/res_x))
 bpy.context.scene.render.resolution_x = res_x
 bpy.context.scene.render.resolution_y = res_y
 bpy.context.scene.render.resolution_percentage = 100
-
+#===============================================================
+#                   CAM_1
 # Create the camera 1 and set extrinsics
 pos = Vector((baseline*0.5, 0.0, 0.0))
-or_angle = -attitude*0.5
+or_angle = radians( attitude)
 bpy.ops.object.camera_add(location = pos)
 
 camobj_1 = bpy.context.scene.objects.active
@@ -85,8 +90,9 @@ cam1.sensor_width = sensor_size*cos(atan(res_y/res_x))
 bpy.context.scene.render.resolution_x = res_x
 bpy.context.scene.render.resolution_y = res_y
 bpy.context.scene.render.resolution_percentage = 100
-
-#lock position with parenting
+#===============================================================
+#                   FIX GEOMETRY
+# lock position with parenting
 
 camobj_0.select= True
 camobj_1.select= True
@@ -101,3 +107,12 @@ bpy.context.scene.objects.active = StereoCenterObj #the active object is the par
 bpy.ops.object.parent_set()
 camobj_0.select= False
 StereoCenterObj.select= False
+#===============================================================
+#                   GENERATE CAMERA CALIB extrinsics
+LocR_1=camobj_1.matrix_local #since the two are parented, the local framework is the one of cam_0. So it contains the extrinsics
+print(LocR_1)
+T_ext=Vector(( LocR_1[0][3],LocR_1[1][3], LocR_1[2][3]))
+print(T_ext)
+EulLocR_1=camobj_1.matrix_local.to_euler()
+R_ext=Vector((degrees(EulLocR_1[0]),degrees(EulLocR_1[1]),degrees(EulLocR_1[2]))) #default is XYZ, according to zhang
+print(R_ext)
