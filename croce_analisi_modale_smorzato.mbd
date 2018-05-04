@@ -170,6 +170,8 @@ print: equation description;	#così abbiamo le equazioni
 
 output results: netcdf; #output in netcdf
 
+#default orientation: orientation matrix;
+
 end:control data;
 #==============================================================================
 #§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§
