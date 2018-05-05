@@ -23,19 +23,54 @@
 import bpy
 from mathutils import *
 from math import *
+import csv
+# import tkinter as tk
+# from tkinter import filedialog
 
 #Stereo rig extrinsics: to be parsed from file
-baseline=0.35;
-attitude=12.0;
+# baseline=0.35;
+# attitude=12.0;
 
 # Camera intrisics: to be imported from external file
 # rember that camera has fov oriented towards z -global
-or_axis = Vector((0.0, 1.0, 0.0))
+
 focal = 8   # mm
 res_x = 2592
 res_y = 1944
 sensor_size = 1/2.5*25.4
+#===============================================================
+#                   PARSE DATA FROM INPUT FILE
+# file_path = filedialog.askopenfilename(title = "Select stereo rig file",filetypes = (("CSV","*.csv"),("all files","*.*")))
+file_path='/Users/albertolavatelli/Documents/MBDynProject2018/blender_scripts/rig_data.csv'
+with open(file_path, 'rt') as csvfile:
+    datareader=csv.reader(csvfile,delimiter=';')
+    str=next(datareader)
+    baseline=float(str[1])*1e-3
+    str=next(datareader)
+    attitude=float(str[1])
+    str=next(datareader)
+    cam0_focal=float(str[1])
+    str=next(datareader)
+    cam0_pxsize=float(str[1])
+    str=next(datareader)
+    cam0_W=float(str[1])
+    str=next(datareader)
+    cam0_H=float(str[1])
+    str=next(datareader)
+    cam1_focal=float(str[1])
+    str=next(datareader)
+    cam1_pxsize=float(str[1])
+    str=next(datareader)
+    cam1_W=float(str[1])
+    str=next(datareader)
+    cam1_H=float(str[1])
 
+#processing inputs
+cam0_W_metric=cam0_W*cam0_pxsize;
+cam0_H_metric=cam0_H*cam0_pxsize;
+cam1_W_metric=cam1_W*cam1_pxsize;
+cam1_H_metric=cam1_H*cam1_pxsize;
+or_axis = Vector((0.0, 1.0, 0.0))
 #===============================================================
 #                   STEREO RIG HANDLE
 #Create the stereo rig central node
@@ -60,12 +95,13 @@ camobj_0.rotation_mode = 'AXIS_ANGLE'
 camobj_0.rotation_axis_angle = Vector(( or_angle,or_axis[0], or_axis[1], or_axis[2]))
 
 # Set camera 0 intrinsics
-cam0.lens = focal
+cam0.lens = cam0_focal
 cam0.dof_distance = 3.00
 cam0.gpu_dof.fstop = 7.1
-cam0.sensor_width = sensor_size*cos(atan(res_y/res_x))
-bpy.context.scene.render.resolution_x = res_x
-bpy.context.scene.render.resolution_y = res_y
+cam0.sensor_width = cam0_W_metric
+cam0.sensor_height = cam0_H_metric
+bpy.context.scene.render.resolution_x = cam0_W
+bpy.context.scene.render.resolution_y = cam0_H
 bpy.context.scene.render.resolution_percentage = 100
 #===============================================================
 #                   CAM_1
@@ -83,12 +119,13 @@ camobj_1.rotation_mode = 'AXIS_ANGLE'
 camobj_1.rotation_axis_angle = Vector(( or_angle,or_axis[0], or_axis[1], or_axis[2]))
 
 # Set camera 1 intrinsics
-cam1.lens = focal
+cam1.lens = cam1_focal
 cam1.dof_distance = 3.00
 cam1.gpu_dof.fstop = 7.1
-cam1.sensor_width = sensor_size*cos(atan(res_y/res_x))
-bpy.context.scene.render.resolution_x = res_x
-bpy.context.scene.render.resolution_y = res_y
+cam1.sensor_width = cam1_W_metric
+cam1.sensor_height = cam1_H_metric
+bpy.context.scene.render.resolution_x = cam1_W
+bpy.context.scene.render.resolution_y = cam1_H
 bpy.context.scene.render.resolution_percentage = 100
 #===============================================================
 #                   FIX GEOMETRY
