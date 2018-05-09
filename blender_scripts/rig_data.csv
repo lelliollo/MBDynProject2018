@@ -1,10 +1,6 @@
 Baseline [mm]; 385
 Attitude [deg]; 12
-Cam_0 focal [mm]; 8
-Cam_0 pixel size [mm]; 6.4e-3
-Cam_0 sensor width [px]; 1280
-Cam_0 sensor height [px]; 1064
-Cam_1 focal [mm]; 8
-Cam_1 pixel size [mm]; 6.4e-3
-Cam_1 sensor width [px]; 1280
-Cam_1 sensor height [px]; 1064
+Cam focal [mm]; 11
+Cam pixel size [mm]; 6.4e-3
+Cam sensor width [px]; 1280
+Cam sensor height [px]; 1064

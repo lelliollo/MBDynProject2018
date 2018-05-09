@@ -24,23 +24,12 @@ import bpy
 from mathutils import *
 from math import *
 import csv
-# import tkinter as tk
-# from tkinter import filedialog
-
-#Stereo rig extrinsics: to be parsed from file
-# baseline=0.35;
-# attitude=12.0;
 
 # Camera intrisics: to be imported from external file
 # rember that camera has fov oriented towards z -global
 
-focal = 8   # mm
-res_x = 2592
-res_y = 1944
-sensor_size = 1/2.5*25.4
 #===============================================================
 #                   PARSE DATA FROM INPUT FILE
-# file_path = filedialog.askopenfilename(title = "Select stereo rig file",filetypes = (("CSV","*.csv"),("all files","*.*")))
 file_path='/Users/albertolavatelli/Documents/MBDynProject2018/blender_scripts/rig_data.csv'
 with open(file_path, 'rt') as csvfile:
     datareader=csv.reader(csvfile,delimiter=';')
@@ -49,27 +38,18 @@ with open(file_path, 'rt') as csvfile:
     str=next(datareader)
     attitude=float(str[1])
     str=next(datareader)
-    cam0_focal=float(str[1])
+    camDesign_focal=float(str[1])
     str=next(datareader)
-    cam0_pxsize=float(str[1])
+    camDesign_pxsize=float(str[1])
     str=next(datareader)
-    cam0_W=float(str[1])
+    camDesign_W=float(str[1])
     str=next(datareader)
-    cam0_H=float(str[1])
-    str=next(datareader)
-    cam1_focal=float(str[1])
-    str=next(datareader)
-    cam1_pxsize=float(str[1])
-    str=next(datareader)
-    cam1_W=float(str[1])
-    str=next(datareader)
-    cam1_H=float(str[1])
+    camDesign_H=float(str[1])
 
 #processing inputs
-cam0_W_metric=cam0_W*cam0_pxsize;
-cam0_H_metric=cam0_H*cam0_pxsize;
-cam1_W_metric=cam1_W*cam1_pxsize;
-cam1_H_metric=cam1_H*cam1_pxsize;
+camDesign_W_metric=camDesign_W*camDesign_pxsize;
+camDesign_H_metric=camDesign_H*camDesign_pxsize;
+
 or_axis = Vector((0.0, 1.0, 0.0))
 #===============================================================
 #                   STEREO RIG HANDLE
@@ -95,14 +75,11 @@ camobj_0.rotation_mode = 'AXIS_ANGLE'
 camobj_0.rotation_axis_angle = Vector(( or_angle,or_axis[0], or_axis[1], or_axis[2]))
 
 # Set camera 0 intrinsics
-cam0.lens = cam0_focal
+cam0.lens = camDesign_focal
 cam0.dof_distance = 3.00
 cam0.gpu_dof.fstop = 7.1
-cam0.sensor_width = cam0_W_metric
-cam0.sensor_height = cam0_H_metric
-bpy.context.scene.render.resolution_x = cam0_W
-bpy.context.scene.render.resolution_y = cam0_H
-bpy.context.scene.render.resolution_percentage = 100
+cam0.sensor_width = camDesign_W_metric
+cam0.sensor_height = camDesign_H_metric
 #===============================================================
 #                   CAM_1
 # Create the camera 1 and set extrinsics
@@ -119,13 +96,15 @@ camobj_1.rotation_mode = 'AXIS_ANGLE'
 camobj_1.rotation_axis_angle = Vector(( or_angle,or_axis[0], or_axis[1], or_axis[2]))
 
 # Set camera 1 intrinsics
-cam1.lens = cam1_focal
+cam1.lens = camDesign_focal
 cam1.dof_distance = 3.00
 cam1.gpu_dof.fstop = 7.1
-cam1.sensor_width = cam1_W_metric
-cam1.sensor_height = cam1_H_metric
-bpy.context.scene.render.resolution_x = cam1_W
-bpy.context.scene.render.resolution_y = cam1_H
+cam1.sensor_width = camDesign_W_metric
+cam1.sensor_height = camDesign_H_metric
+#===============================================================
+#                   SET RENDER RESOLUTION
+bpy.context.scene.render.resolution_x = camDesign_W
+bpy.context.scene.render.resolution_y = camDesign_H
 bpy.context.scene.render.resolution_percentage = 100
 #===============================================================
 #                   FIX GEOMETRY
@@ -146,10 +125,53 @@ camobj_0.select= False
 StereoCenterObj.select= False
 #===============================================================
 #                   GENERATE CAMERA CALIB extrinsics
-LocR_1=camobj_1.matrix_local #since the two are parented, the local framework is the one of cam_0. So it contains the extrinsics
-print(LocR_1)
-T_ext=Vector(( LocR_1[0][3],LocR_1[1][3], LocR_1[2][3]))
+WorldR_1=camobj_1.matrix_local #since the two are parented, the local framework is the one of cam_0. So it contains the extrinsics
+print(WorldR_1)
+T_ext=Vector(( 1e3*WorldR_1[0][3],1e3*WorldR_1[1][3], 1e3*WorldR_1[2][3]))
 print(T_ext)
-EulLocR_1=camobj_1.matrix_local.to_euler()
-R_ext=Vector((degrees(EulLocR_1[0]),degrees(EulLocR_1[1]),degrees(EulLocR_1[2]))) #default is XYZ, according to zhang
+EulWorldR_1=camobj_1.matrix_local.to_euler()
+R_ext=Vector((degrees(EulWorldR_1[0]),degrees(EulWorldR_1[1]),degrees(EulWorldR_1[2]))) #default is XYZ, according to zhang
 print(R_ext)
+
+#===============================================================
+#                   GENERATE CAMERA CALIB intrinsics
+cc_x=camDesign_W*0.5;
+cc_y=camDesign_H*0.5;
+Fx=camDesign_focal/camDesign_pxsize;
+Fy=Fx;
+
+#===============================================================
+#                   Write calib file
+calib_filename='/Users/albertolavatelli/Documents/MBDynProject2018/blender_scripts/camera_calib.csv'
+
+with open(calib_filename,'w') as csvfile:
+    calib_file_writer=csv.writer(csvfile,delimiter=';')
+    #intrinsics cam 0
+    calib_file_writer.writerow(['Cam0_Fx',Fx])
+    calib_file_writer.writerow(['Cam0_Fy',Fy])
+    calib_file_writer.writerow(['Cam0_Fs',0.0])
+    calib_file_writer.writerow(['Cam0_Kappa 1',0.0])
+    calib_file_writer.writerow(['Cam0_Kappa 2',0.0])
+    calib_file_writer.writerow(['Cam0_Kappa 3',0.0])
+    calib_file_writer.writerow(['Cam0_P1',0.0])
+    calib_file_writer.writerow(['Cam0_P2',0.0])
+    calib_file_writer.writerow(['Cam0_Cx',cc_x])
+    calib_file_writer.writerow(['Cam0_Cy',cc_y])
+    #intrinsics cam 1
+    calib_file_writer.writerow(['cam1_Fx',Fx])
+    calib_file_writer.writerow(['cam1_Fy',Fy])
+    calib_file_writer.writerow(['cam1_Fs',0.0])
+    calib_file_writer.writerow(['cam1_Kappa 1',0.0])
+    calib_file_writer.writerow(['cam1_Kappa 2',0.0])
+    calib_file_writer.writerow(['cam1_Kappa 3',0.0])
+    calib_file_writer.writerow(['cam1_P1',0.0])
+    calib_file_writer.writerow(['cam1_P2',0.0])
+    calib_file_writer.writerow(['cam1_Cx',cc_x])
+    calib_file_writer.writerow(['cam1_Cy',cc_y])
+    #extrinsics
+    calib_file_writer.writerow(['Tx [mm]',T_ext[0]])
+    calib_file_writer.writerow(['Ty [mm]',T_ext[1]])
+    calib_file_writer.writerow(['Tz [mm]',T_ext[2]])
+    calib_file_writer.writerow(['Theta [deg]',R_ext[0]])
+    calib_file_writer.writerow(['Phi [deg]',R_ext[1]])
+    calib_file_writer.writerow(['Psi [deg]',R_ext[2]])
