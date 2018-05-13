@@ -30,7 +30,8 @@ import csv
 
 #===============================================================
 #                   PARSE DATA FROM INPUT FILE
-file_path='/Users/albertolavatelli/Documents/MBDynProject2018/blender_scripts/rig_data.csv'
+WorkFolder='/home/alberto/Documenti/progetti_MBDYN/MBDynProject2018/blender_scripts/'
+file_path=WorkFolder+'rig_data.csv'
 with open(file_path, 'rt') as csvfile:
     datareader=csv.reader(csvfile,delimiter=';')
     str=next(datareader)
@@ -142,7 +143,7 @@ Fy=Fx;
 
 #===============================================================
 #                   Write calib file
-calib_filename='/Users/albertolavatelli/Documents/MBDynProject2018/blender_scripts/camera_calib.csv'
+calib_filename=WorkFolder+'camera_calib.csv'
 
 with open(calib_filename,'w') as csvfile:
     calib_file_writer=csv.writer(csvfile,delimiter=';')
