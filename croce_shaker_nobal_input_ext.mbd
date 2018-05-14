@@ -34,14 +34,14 @@ end: data;
 #SETUP DEL SOLUTORE
 set: const real dt_sim=1e-3;
 set: const real t_0=0.;
-set: const real t_stop=5;
+set: const real t_stop=1.;
 
 begin: initial value;
 	initial time: t_0;
 	final time: t_stop;
 	time step: dt_sim;
 
-tolerance: 1e-4;
+tolerance: 1e-3;
 	max iterations: 300;
 	derivatives coefficient: 1.e-8;
 
@@ -51,6 +51,13 @@ tolerance: 1e-4;
 	method: ms, 0.6;
 	derivatives tolerance: 1e38; #tolleranza sul calcolo delle derivate (ricordarsi che non c'entra niente con il eigenan)
 
+	eigenanalysis:
+			dt_sim,
+			output matrices,
+			output eigenvectors,
+			output geometry,
+			use lapack;
+/* output: residual; */
 
 end: initial value;
 
@@ -111,7 +118,7 @@ set: real H_damp=1.5e-4;
 set: real imbalance_share=0.01;
 
 #Variabili shaker
-set: real k_shaker=4.e+3; #rigidezza molla shaker [N/m]
+set: real k_shaker=2.e+4; #rigidezza molla shaker [N/m]
 set: real sh_rod_L=0.1;
 
 set: const real dt_F_drive=1/300.; #delta t campionamento drive shaker

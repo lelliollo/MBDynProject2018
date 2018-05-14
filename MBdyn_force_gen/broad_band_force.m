@@ -3,16 +3,16 @@ close all
 clc
 
 %% Generation parameters
-fsamp=3e2;
+fsamp=4e2;
 dt=1/fsamp;
 
-Tfin=4;
+Tfin=28;
 N=floor(Tfin*fsamp);
 
 f_pass=2;
 f_stop=50;
 
-RMS_output=25;
+RMS_output=15;
 
 
 %===============================PROCESSING=============================
@@ -32,15 +32,15 @@ w_highstop=f_stop/fny;
 disp('Broadband filtering...')
 ng_vec_filt=filtfilt(b,a,ng_vec);
 
-% figure
-% plot(ng_vec)
-% hold all
-% plot(ng_vec_filt)
-%
-% figure
-% pwelch(ng_vec)
-% hold all
-% pwelch(ng_vec_filt)
+%% And smooth
+%wndw = 2;                                      %# sliding window size
+%ng_vec_filt = filter(ones(wndw,1)/wndw, 1, ng_vec_filt);
+
+
+ figure
+ pwelch(ng_vec)
+ hold all
+ pwelch(ng_vec_filt)
 
 %% scale signal
 disp('Adjust amplitude...')
@@ -53,12 +53,14 @@ sig_out=RMS_output.*ng_ZN;
 dg=input('Insert transition window?...(y/n)','s')
 if strcmp(dg,'y')
   disp('---->Transitioning...')
-  fin=tukeywin(N,0.2);
+  fin=tukeywin(N,0.25);
   sig_out=sig_out.*fin;
 end
 
+
+
  figure
- plot(sig_out)
+ plot([1:N].*dt,sig_out)
 
 
 
@@ -69,6 +71,6 @@ cd(simdir)
 
 %% write file
 fnam='drive_sig.dat';
-disp(strcat('Saving output to ',fnam,' ...'))
+disp(strcat('Saving output to: ',fnam,' ...'))
 dlmwrite(fnam,sig_out);
 cd(gendir)
