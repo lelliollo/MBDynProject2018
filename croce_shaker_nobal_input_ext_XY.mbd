@@ -752,8 +752,10 @@ set: const integer NODE_shaker=600002;
 
 reference: RSYS_shaker,
   reference, global,
-			0.,0.,-sh_rod_L,
-  reference, global,eye,
+			0.,-sh_rod_L/sqrt(2),-sh_rod_L/sqrt(2),
+  reference, global,
+		1, 0., 1.,1.,
+		2, 0., -1.,1.,
   reference, global, null,
   reference, global, null
   ;
@@ -815,10 +817,11 @@ joint: SHAKER_JOINT,
 			position orientation, reference, RSYS_shaker, eye,
 			rotation orientation, reference, RSYS_shaker, eye,
 			position constraint,
-					1, 1, 0, null,
+					0, 1, 1, null,
 			orientation constraint,
 					1, 1, 1, null
   ;
+
 #metto la molla allo shaker
 set: const integer SHAKER_ROD=3;
 
@@ -839,15 +842,17 @@ joint: SHAKER_ROD,
 
 set: const integer SHAKER_ACTION=8088;
 
+
 force: SHAKER_ACTION,
     absolute,
       TRAV_SX, #nodo
         position, reference, node, null, #offset dal nodo
-        single, reference, RSYS_shaker,0., 0., 1., #direzioni attive (in questo caso la z)
+        single, reference, RSYS_shaker, 1., 0., 0., #direzioni attive (in questo caso la z)
 				file,
 				  FORCING_EXT_INP,
 				  1
     ;
+
 
 #§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*§*
 #CARATTERISTICHE FISICHE TELAIO COMUNI A TUTTI GLI ELM

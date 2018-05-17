@@ -84,3 +84,9 @@ semilogy(freq.Y,spVel.Y,'r')
 semilogy(freq.Z,spVel.Z,'k')
 xlim([0 100])
 
+%% FOrza
+
+F=ncread(fnam,'elem.force.8088.F');
+figure
+plot(t_vec,F(3,:))
+

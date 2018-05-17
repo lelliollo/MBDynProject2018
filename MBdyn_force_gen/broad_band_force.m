@@ -12,7 +12,7 @@ N=floor(Tfin*fsamp);
 f_pass=2;
 f_stop=50;
 
-RMS_output=15;
+RMS_output=25;
 
 
 %===============================PROCESSING=============================
