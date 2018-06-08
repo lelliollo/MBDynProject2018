@@ -10,6 +10,7 @@ Nfile=size(ImList,1);
  
 %% PRocess cam0
 blob_storage=zeros(7,2,Nfile);
+salvare_figs=false;
 
 for i=1:Nfile
   imLocFile=strcat(ImList(i).folder,'\',ImList(i).name);
@@ -18,7 +19,7 @@ for i=1:Nfile
       ImLoc=rgb2gray(ImLoc);
   end
   save_fig_name=strcat('cam0_',num2str(i),'.png');
-  blobs=blob_analysis_mbd(ImLoc,30,5,[60,1000],false);
+  blobs=blob_analysis_mbd(ImLoc,30,5,[60,1000],salvare_figs);
   if size(blobs,2)>7
       warning('C''è problema')
   end
@@ -42,7 +43,7 @@ for i=1:Nfile
       ImLoc=rgb2gray(ImLoc);
   end
   save_fig_name=strcat('cam1_',num2str(i),'.png');
-  blobs=blob_analysis_mbd(ImLoc,30,5,[60,1000],false);
+  blobs=blob_analysis_mbd(ImLoc,30,5,[60,1000],salvare_figs);
   if size(blobs,2)>7
       warning('C''è problema')
   end
